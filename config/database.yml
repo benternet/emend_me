@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: emend_me_production
-  username: emend_me
-  password: <%= ENV['EMEND_ME_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RDS_DB_NAME'] || 'emend_me_production' %>
+  username: <%= ENV['RDS_USERNAME'] || 'emend_me' %>
+  password: <%= ENV['RDS_PASSWORD'] || ENV['EMEND_ME_DATABASE_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
